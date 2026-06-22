@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Kit · @YourHandle</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #08080D;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px 60px;
+  }
+
+  .kit {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* HERO */
+  .hero {
+    background: #0A0A0F;
+    border-radius: 16px;
+    padding: 36px 32px 28px;
+    position: relative;
+    overflow: hidden;
+    border: 0.5px solid rgba(138,99,255,0.2);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138,99,255,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 30%;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,116,138,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8A63FF;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .handle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+  .niche {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-size: 11px;
+    background: rgba(138,99,255,0.15);
+    color: #B8A0FF;
+    border: 0.5px solid rgba(138,99,255,0.3);
+    border-radius: 100px;
+    padding: 5px 13px;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #555;
+    font-weight: 500;
+    padding: 4px 2px 0;
+  }
+
+  /* STAT GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 520px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat-card {
+    background: #111118;
+    border-radius: 12px;
+    padding: 16px 16px 14px;
+    border: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .stat-label {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #8A63FF;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-sub {
+    font-size: 10px;
+    color: #444;
+    line-height: 1.4;
+  }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (max-width: 480px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+  .info-card {
+    background: #111118;
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+    border: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .info-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: #888;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* DONUT */
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .donut-svg { flex-shrink: 0; }
+  .legend { display: flex; flex-direction: column; gap: 7px; }
+  .legend-row { display: flex; align-items: center; gap: 8px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-text { font-size: 12px; color: #888; flex: 1; }
+  .legend-pct { font-size: 12px; font-weight: 700; color: #fff; }
+  .legend-note { font-size: 10px; color: #444; margin-top: 4px; }
+
+  /* BARS */
+  .bar-row { margin-bottom: 12px; }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-meta { display: flex; justify-content: space-between; margin-bottom: 5px; }
+  .bar-name { font-size: 12px; color: #888; }
+  .bar-val { font-size: 12px; font-weight: 700; color: #fff; }
+  .bar-track { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; background: #8A63FF; }
+  .bar-note { font-size: 10px; color: #444; margin-top: 10px; line-height: 1.5; }
+
+  /* WHO IT REACHES */
+  .reach-card {
+    background: #111118;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 0.5px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .reach-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5;
+  }
+  .reach-arrow {
+    color: #8A63FF;
+    font-size: 14px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  /* BEST FOR */
+  .bestfor-card {
+    background: #111118;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .bestfor-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  /* CTA */
+  .cta-card {
+    background: #0A0A0F;
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border: 0.5px solid rgba(138,99,255,0.25);
+    flex-wrap: wrap;
+  }
+  .cta-handle {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .cta-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+  .cta-btn {
+    background: #8A63FF;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    padding: 11px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .cta-btn:hover { background: #7A53EF; }
+
+  .footer {
+    font-size: 10px;
+    color: #333;
+    text-align: center;
+    padding-top: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="kit">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">Instagram Media Kit · 2026</div>
+    <div class="handle">@YourHandle</div>
+    <div class="niche">College humor · Relatable content · Lifestyle</div>
+    <div class="tags">
+      <span class="tag">Gen Z</span>
+      <span class="tag">18–24</span>
+      <span class="tag">97.7% Non-Follower Reach</span>
+      <span class="tag">Reels-First</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <p class="section-label">90-Day Performance · Mar 24 – Jun 21, 2026</p>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Total views</div>
+      <div class="stat-value">2.7M</div>
+      <div class="stat-sub">~901K avg per month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Accounts reached</div>
+      <div class="stat-value">1.1M</div>
+      <div class="stat-sub">unique accounts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Interactions</div>
+      <div class="stat-value">123K</div>
+      <div class="stat-sub">likes, comments, shares, saves</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Posts per month</div>
+      <div class="stat-value">~27</div>
+      <div class="stat-sub">short-form video content</div>
+    </div>
+  </div>
+
+  <!-- AUDIENCE + CONTENT -->
+  <p class="section-label">Audience &amp; Content</p>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-title">Audience reach</div>
+      <div class="donut-wrap">
+        <svg class="donut-svg" width="90" height="90" viewBox="0 0 90 90">
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#1A1A28" stroke-width="12"/>
+          <!-- Non-followers 97.7% -->
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#8A63FF" stroke-width="12"
+            stroke-dasharray="208.6" stroke-dashoffset="4.8"
+            stroke-linecap="round"
+            transform="rotate(-90 45 45)"/>
+          <!-- Followers 2.3% -->
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#E8748A" stroke-width="12"
+            stroke-dasharray="4.8 208.6"
+            stroke-dashoffset="4.8"
+            stroke-linecap="round"
+            transform="rotate(-90 45 45)"/>
+          <text x="45" y="49" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#fff">97.7%</text>
+        </svg>
+        <div class="legend">
+          <div class="legend-row">
+            <div class="legend-dot" style="background:#8A63FF"></div>
+            <span class="legend-text">Non-followers</span>
+            <span class="legend-pct">97.7%</span>
+          </div>
+          <div class="legend-row">
+            <div class="legend-dot" style="background:#E8748A"></div>
+            <span class="legend-text">Followers</span>
+            <span class="legend-pct">2.3%</span>
+          </div>
+          <div class="legend-note">Massive discovery reach</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-title">Content breakdown</div>
+      <div class="bar-row">
+        <div class="bar-meta">
+          <span class="bar-name">Reels</span>
+          <span class="bar-val">98%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:98%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-meta">
+          <span class="bar-name">Non-follower views</span>
+          <span class="bar-val">97.7%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:97.7%;opacity:0.7"></div></div>
+      </div>
+      <div class="bar-note">Short-form video optimized for Explore &amp; viral distribution.</div>
+    </div>
+  </div>
+
+  <!-- WHO IT REACHES -->
+  <p class="section-label">Who this account reaches</p>
+  <div class="reach-card">
+    <div class="reach-item">
+      <span class="reach-arrow">▸</span>
+      College students &amp; young adults (18–24), primarily US-based
+    </div>
+    <div class="reach-item">
+      <span class="reach-arrow">▸</span>
+      97.7% of views reach <em style="color:#B8A0FF;font-style:normal">non-followers</em> — your brand gets introduced to a fresh audience every single post
+    </div>
+    <div class="reach-item">
+      <span class="reach-arrow">▸</span>
+      Mobile-first Gen Z audience with strong impulse purchasing behavior
+    </div>
+    <div class="reach-item">
+      <span class="reach-arrow">▸</span>
+      Responds best to humor-integrated ads, authentic lifestyle placement &amp; relatable storytelling
+    </div>
+  </div>
+
+  <!-- BEST FOR -->
+  <p class="section-label">Best for brands in</p>
+  <div class="bestfor-card">
+    <div class="bestfor-tags">
+      <span class="tag">Fashion &amp; streetwear</span>
+      <span class="tag">Food &amp; beverage</span>
+      <span class="tag">Tech &amp; apps</span>
+      <span class="tag">Dorm / home goods</span>
+      <span class="tag">Entertainment</span>
+      <span class="tag">Wellness &amp; fitness</span>
+      <span class="tag">Finance (BNPL, student)</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-card">
+    <div>
+      <div class="cta-handle">@YourHandle</div>
+      <div class="cta-sub">DM for collabs, gifted partnerships &amp; paid integrations</div>
+    </div>
+    <a class="cta-btn" href="https://www.instagram.com/YourHandle" target="_blank">Let's Work Together</a>
+  </div>
+
+  <p class="footer">Data sourced from Instagram Insights · Mar 24 – Jun 21, 2026</p>
+
+</div>
+</body>
+</html>
